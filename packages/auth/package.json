@@ -1,0 +1,31 @@
+{
+  "name": "@raahi/auth",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./env": "./src/env.ts",
+    "./permissions": "./src/permissions.ts"
+  },
+  "scripts": {
+    "lint": "eslint --flag unstable_native_nodejs_ts_config --max-warnings 0",
+    "check-types": "tsc --noEmit",
+    "generate": "pnpm with-env auth generate --config script/auth-cli.ts --output ../db/src/schema/auth.ts --yes",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@better-auth/expo": "catalog:",
+    "@raahi/db": "workspace:*",
+    "@t3-oss/env-core": "^0.13.11",
+    "better-auth": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@raahi/eslint-config": "workspace:*",
+    "@raahi/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "auth": "^1.7.14",
+    "eslint": "catalog:",
+    "typescript": "catalog:"
+  }
+}

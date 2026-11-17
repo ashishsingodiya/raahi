@@ -1,0 +1,30 @@
+# Dependencies (rebuilt inside Docker)
+node_modules
+**/node_modules
+
+# Build outputs (rebuilt inside Docker)
+.next
+**/.next
+**/dist
+**/.cache
+**/.turbo
+
+# Expo / Mobile (not needed for Docker builds)
+apps/mobile
+.expo
+
+# IDE & OS
+.vscode
+.DS_Store
+**/.DS_Store
+
+# Environment files (injected at runtime)
+.env
+.env*.local
+
+# Misc
+*.pem
+.husky
+coverage
+.turbo
+.git

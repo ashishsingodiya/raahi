@@ -1,0 +1,2 @@
+pnpm exec sherif
+pnpm exec lint-staged
