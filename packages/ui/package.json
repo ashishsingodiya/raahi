@@ -1,5 +1,5 @@
 {
-  "name": "@raahi/ui",
+  "name": "@ridemate/ui",
   "private": true,
   "type": "module",
   "exports": {
@@ -20,8 +20,8 @@
     "lucide-react": "catalog:"
   },
   "devDependencies": {
-    "@raahi/eslint-config": "workspace:*",
-    "@raahi/typescript-config": "workspace:*",
+    "@ridemate/eslint-config": "workspace:*",
+    "@ridemate/typescript-config": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",

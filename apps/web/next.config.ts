@@ -6,7 +6,12 @@ import "./src/env";
 const nextConfig: NextConfig = {
   output: "standalone",
   /** Enables hot reloading for local packages without a build step */
-  transpilePackages: ["@raahi/api", "@raahi/auth", "@raahi/db", "@raahi/ui"],
+  transpilePackages: [
+    "@ridemate/api",
+    "@ridemate/auth",
+    "@ridemate/db",
+    "@ridemate/ui",
+  ],
 };
 
 export default nextConfig;

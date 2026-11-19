@@ -1,5 +1,5 @@
-import { sql } from "@raahi/db";
-import { db } from "@raahi/db/client";
+import { sql } from "@ridemate/db";
+import { db } from "@ridemate/db/client";
 
 export async function GET() {
   try {

@@ -25,7 +25,7 @@ export default function HomeScreen() {
     <Screen>
       {!user ? (
         <View className="gap-5 py-12">
-          <Text className="text-4xl font-bold text-foreground">Raahi</Text>
+          <Text className="text-4xl font-bold text-foreground">RideMate</Text>
           <Message>Find and share local rides with verified students.</Message>
           <Action onPress={() => router.push("/login")}>Log in</Action>
         </View>

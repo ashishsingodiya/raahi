@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { User } from "lucide-react";
 
-import type { Session } from "@raahi/auth";
-import { Button } from "@raahi/ui/components/button";
+import type { Session } from "@ridemate/auth";
+import { Button } from "@ridemate/ui/components/button";
 
 import { UserMenu } from "~/features/auth/components/user-menu";
 
@@ -18,7 +18,7 @@ export function HomeHeader({ session }: { session: Session | null }) {
             R
           </span>
           <span className="text-lg font-bold tracking-tight text-foreground sm:text-xl">
-            Raahi
+            RideMate
           </span>
         </Link>
 

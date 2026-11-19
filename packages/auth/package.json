@@ -1,5 +1,5 @@
 {
-  "name": "@raahi/auth",
+  "name": "@ridemate/auth",
   "private": true,
   "type": "module",
   "exports": {
@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "@better-auth/expo": "catalog:",
-    "@raahi/db": "workspace:*",
+    "@ridemate/db": "workspace:*",
     "@t3-oss/env-core": "^0.13.11",
     "better-auth": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@raahi/eslint-config": "workspace:*",
-    "@raahi/typescript-config": "workspace:*",
+    "@ridemate/eslint-config": "workspace:*",
+    "@ridemate/typescript-config": "workspace:*",
     "@types/node": "catalog:",
     "auth": "^1.7.14",
     "eslint": "catalog:",

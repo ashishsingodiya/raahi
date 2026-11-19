@@ -1,5 +1,5 @@
 {
-  "name": "@raahi/prettier-config",
+  "name": "@ridemate/prettier-config",
   "private": true,
   "type": "module",
   "exports": {

@@ -140,7 +140,7 @@ function HostedMap({
   useEffect(() => {
     if (ready)
       webRef.current?.injectJavaScript(
-        `window.setRaahiMap?.(${JSON.stringify({ center, markers, route, focus })}); true;`,
+        `window.setRideMateMap?.(${JSON.stringify({ center, markers, route, focus })}); true;`,
       );
   }, [center, markers, route, focus, ready]);
 

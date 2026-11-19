@@ -3,7 +3,7 @@ import { createTRPCClient, httpBatchLink } from "@trpc/client";
 import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import superjson from "superjson";
 
-import type { AppRouter } from "@raahi/api";
+import type { AppRouter } from "@ridemate/api";
 
 import { authClient } from "./auth";
 import { getBaseUrl } from "./base-url";

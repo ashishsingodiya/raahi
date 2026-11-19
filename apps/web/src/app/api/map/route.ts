@@ -7,14 +7,14 @@ export function GET() {
       status: 503,
     });
 
-  const script = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&libraries=marker&loading=async&callback=initializeRaahiMap`;
+  const script = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&libraries=marker&loading=async&callback=initializeRideMateMap`;
   return new Response(
     `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Raahi ride map</title>
+  <title>RideMate ride map</title>
   <style>html,body,#map{height:100%;margin:0}body{font-family:system-ui}</style>
 </head>
 <body>
@@ -23,7 +23,7 @@ export function GET() {
   const send = (message) => window.ReactNativeWebView?.postMessage(JSON.stringify(message));
   const coordinate = (point) => ({lat: point.latitude, lng: point.longitude});
   window.gm_authFailure = () => send({type:"error"});
-  window.initializeRaahiMap = () => {
+  window.initializeRideMateMap = () => {
     const map = new google.maps.Map(document.getElementById("map"), {
       center: {lat: 25.16, lng: 75.81}, zoom: 13, mapId:"DEMO_MAP_ID",
       mapTypeControl:false, streetViewControl:false, fullscreenControl:false,
@@ -34,7 +34,7 @@ export function GET() {
     let centered = false;
     let lastFocus;
     map.addListener("click", (event) => send({type:"pin",latitude:event.latLng.lat(),longitude:event.latLng.lng()}));
-    window.setRaahiMap = ({center, markers: pins, route, focus}) => {
+    window.setRideMateMap = ({center, markers: pins, route, focus}) => {
       for (const marker of markers) marker.map = null;
       if (line) line.setMap(null);
       markers = pins.map((pin) => new google.maps.marker.AdvancedMarkerElement({

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Image, Text, View } from "react-native";
 import { useMutation } from "@tanstack/react-query";
 
-import type { RouterOutputs } from "@raahi/api";
+import type { RouterOutputs } from "@ridemate/api";
 
 import { Action, Field, Message } from "~/components/ui";
 import { trpc } from "~/utils/api";
@@ -63,8 +63,8 @@ export function Onboarding({
       />
       {mobileError ? <Message error>{mobileError}</Message> : null}
       <Message>
-        Raahi shares your number with the other student once a driver accepts a
-        seat request.
+        RideMate shares your number with the other student once a driver accepts
+        a seat request.
       </Message>
       {save.error && !nameError && !mobileError ? (
         <Message error>{save.error.message}</Message>

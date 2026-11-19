@@ -4,7 +4,7 @@ import { cache } from "react";
 import { headers } from "next/headers";
 import { nextCookies } from "better-auth/next-js";
 
-import { initAuth } from "@raahi/auth";
+import { initAuth } from "@ridemate/auth";
 
 import { env } from "~/env";
 
@@ -15,9 +15,9 @@ export const auth = initAuth({
   googleClientSecret: env.AUTH_GOOGLE_CLIENT_SECRET,
   extraPlugins: [nextCookies()],
   trustedOrigins: [
-    "raahi://",
-    "raahi-dev://",
-    "raahi-preview://",
+    "ridemate://",
+    "ridemate-dev://",
+    "ridemate-preview://",
     "expo://",
     "exp://",
   ],

@@ -13,7 +13,7 @@ An approved driver SHALL be able to publish a ride with a start, destination, se
 #### Scenario: Offer a local ride
 
 - **WHEN** an approved student selects a start and destination by place search or map pins, selects a route and default pickup point, and submits valid ride details
-- **THEN** Raahi publishes the ride with its route, schedule, and free seat count
+- **THEN** RideMate publishes the ride with its route, schedule, and free seat count
 - **AND** the start and destination can be any supported local map locations, including campus, home, and other destinations
 
 #### Scenario: Invalid ride details
@@ -23,7 +23,7 @@ An approved driver SHALL be able to publish a ride with a start, destination, se
 
 ### Requirement: Choose free or paid seats
 
-The driver SHALL be able to publish a ride as free or set one fixed positive price in rupees per seat. The same price SHALL apply to each accepted seat, including partial trips. Raahi SHALL display the charge before a rider submits a request. Students SHALL settle payment directly.
+The driver SHALL be able to publish a ride as free or set one fixed positive price in rupees per seat. The same price SHALL apply to each accepted seat, including partial trips. RideMate SHALL display the charge before a rider submits a request. Students SHALL settle payment directly.
 
 #### Scenario: Free ride
 

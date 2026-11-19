@@ -233,7 +233,7 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^21.2.4
         version: 21.2.4
-      '@raahi/prettier-config':
+      '@ridemate/prettier-config':
         specifier: workspace:*
         version: link:tooling/prettier
       '@turbo/gen':
@@ -369,13 +369,13 @@ importers:
         specifier: 'catalog:'
         version: 4.6.7
     devDependencies:
-      '@raahi/api':
+      '@ridemate/api':
         specifier: workspace:*
         version: link:../../packages/api
-      '@raahi/eslint-config':
+      '@ridemate/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@raahi/typescript-config':
+      '@ridemate/typescript-config':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/node':
@@ -393,16 +393,16 @@ importers:
 
   apps/web:
     dependencies:
-      '@raahi/api':
+      '@ridemate/api':
         specifier: workspace:*
         version: link:../../packages/api
-      '@raahi/auth':
+      '@ridemate/auth':
         specifier: workspace:*
         version: link:../../packages/auth
-      '@raahi/db':
+      '@ridemate/db':
         specifier: workspace:*
         version: link:../../packages/db
-      '@raahi/ui':
+      '@ridemate/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       '@t3-oss/env-nextjs':
@@ -448,10 +448,10 @@ importers:
         specifier: 'catalog:'
         version: 4.6.7
     devDependencies:
-      '@raahi/eslint-config':
+      '@ridemate/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@raahi/typescript-config':
+      '@ridemate/typescript-config':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@tailwindcss/postcss':
@@ -478,10 +478,10 @@ importers:
 
   packages/api:
     dependencies:
-      '@raahi/auth':
+      '@ridemate/auth':
         specifier: workspace:*
         version: link:../auth
-      '@raahi/db':
+      '@ridemate/db':
         specifier: workspace:*
         version: link:../db
       '@trpc/server':
@@ -494,10 +494,10 @@ importers:
         specifier: 'catalog:'
         version: 4.6.7
     devDependencies:
-      '@raahi/eslint-config':
+      '@ridemate/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@raahi/typescript-config':
+      '@ridemate/typescript-config':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/node':
@@ -518,7 +518,7 @@ importers:
       '@better-auth/expo':
         specifier: 'catalog:'
         version: 1.7.14(@better-auth/core@1.7.14(@better-auth/utils@0.5.1)(@better-fetch/fetch@1.3.3)(better-call@1.4.4(zod@4.6.7))(jose@6.2.13)(kysely@0.29.7)(nanostores@1.5.5))(better-auth@1.7.14(drizzle-kit@0.31.11)(drizzle-orm@0.45.4(kysely@0.29.7)(postgres@3.4.9))(next@16.4.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/node@24.19.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(expo-constants@58.0.14)(expo-linking@58.0.15)(expo-network@58.0.4(expo@58.0.22)(react@19.3.0))(expo-secure-store@58.0.2(expo@58.0.22))(expo-web-browser@58.0.7(expo@58.0.22)(react-native@0.88.1(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.88.1(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)))
-      '@raahi/db':
+      '@ridemate/db':
         specifier: workspace:*
         version: link:../db
       '@t3-oss/env-core':
@@ -531,10 +531,10 @@ importers:
         specifier: 'catalog:'
         version: 4.6.7
     devDependencies:
-      '@raahi/eslint-config':
+      '@ridemate/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@raahi/typescript-config':
+      '@ridemate/typescript-config':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/node':
@@ -565,10 +565,10 @@ importers:
         specifier: 'catalog:'
         version: 4.6.7
     devDependencies:
-      '@raahi/eslint-config':
+      '@ridemate/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@raahi/typescript-config':
+      '@ridemate/typescript-config':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/node':
@@ -605,10 +605,10 @@ importers:
         specifier: catalog:react19
         version: 19.3.0(react@19.3.0)
     devDependencies:
-      '@raahi/eslint-config':
+      '@ridemate/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
-      '@raahi/typescript-config':
+      '@ridemate/typescript-config':
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@types/node':
@@ -654,7 +654,7 @@ importers:
         specifier: ^8.72.1
         version: 8.72.1(eslint@10.13.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
     devDependencies:
-      '@raahi/typescript-config':
+      '@ridemate/typescript-config':
         specifier: workspace:*
         version: link:../typescript
       '@types/node':

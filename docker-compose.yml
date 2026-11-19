@@ -1,12 +1,12 @@
 services:
   postgres:
     image: postgres:18-alpine
-    container_name: raahi-postgres
+    container_name: ridemate-postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: ${POSTGRES_DB:-raahi}
+      POSTGRES_DB: ${POSTGRES_DB:-ridemate}
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     volumes:
@@ -15,7 +15,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-raahi}",
+          "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-ridemate}",
         ]
       interval: 5s
       timeout: 5s

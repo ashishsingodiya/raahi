@@ -1,8 +1,8 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
-import { env as authEnv } from "@raahi/auth/env";
-import { env as dbEnv } from "@raahi/db/env";
+import { env as authEnv } from "@ridemate/auth/env";
+import { env as dbEnv } from "@ridemate/db/env";
 
 export const env = createEnv({
   extends: [dbEnv, authEnv],

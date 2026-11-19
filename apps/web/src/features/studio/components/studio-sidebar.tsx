@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { House } from "lucide-react";
 
-import type { Session } from "@raahi/auth";
+import type { Session } from "@ridemate/auth";
 import {
   Sidebar,
   SidebarContent,
@@ -16,7 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@raahi/ui/components/sidebar";
+} from "@ridemate/ui/components/sidebar";
 
 import { UserMenu } from "~/features/auth/components/user-menu";
 
@@ -50,7 +50,7 @@ export function StudioSidebar({ user }: { user: Session["user"] }) {
             R
           </span>
           <span className="text-lg font-bold tracking-tight text-sidebar-foreground">
-            Raahi
+            RideMate
           </span>
         </Link>
       </SidebarHeader>

@@ -1,5 +1,5 @@
-import { eq } from "@raahi/db";
-import { studentProfile } from "@raahi/db/schema";
+import { eq } from "@ridemate/db";
+import { studentProfile } from "@ridemate/db/schema";
 
 import type { Context } from "./trpc";
 

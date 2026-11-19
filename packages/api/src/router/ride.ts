@@ -12,8 +12,8 @@ import {
   lte,
   ne,
   sql,
-} from "@raahi/db";
-import { ride, seatRequest } from "@raahi/db/schema";
+} from "@ridemate/db";
+import { ride, seatRequest } from "@ridemate/db/schema";
 
 import {
   createRoutePreview,

@@ -3,7 +3,7 @@ import { Alert, Text, View } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import type { RouterOutputs } from "@raahi/api";
+import type { RouterOutputs } from "@ridemate/api";
 
 import type { Place } from "~/features/rides/place-picker";
 import { Action, Loading, Message, Screen } from "~/components/ui";

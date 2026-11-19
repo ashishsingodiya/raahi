@@ -22,7 +22,7 @@ The app SHALL show nearby upcoming rides with available seats on a map and in a 
 
 ### Requirement: Match the requested trip in route order
 
-When a student provides pickup, drop-off, and preferred time, Raahi SHALL include only available rides that pass within a configurable distance of both pins, serve the pickup before the drop-off, and have an estimated pickup time within the configured search window.
+When a student provides pickup, drop-off, and preferred time, RideMate SHALL include only available rides that pass within a configurable distance of both pins, serve the pickup before the drop-off, and have an estimated pickup time within the configured search window.
 
 #### Scenario: Partial trip in the same direction
 

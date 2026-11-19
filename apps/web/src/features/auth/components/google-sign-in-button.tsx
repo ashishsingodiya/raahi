@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Button } from "@raahi/ui/components/button";
+import { Button } from "@ridemate/ui/components/button";
 
 import { authClient } from "~/auth/client";
 

@@ -11,21 +11,21 @@ const IS_DEV = APP_VARIANT === "development";
 const IS_PREVIEW = APP_VARIANT === "preview";
 
 const getAppName = () => {
-  if (IS_DEV) return "Raahi (Dev)";
-  if (IS_PREVIEW) return "Raahi (Preview)";
-  return "Raahi";
+  if (IS_DEV) return "RideMate (Dev)";
+  if (IS_PREVIEW) return "RideMate (Preview)";
+  return "RideMate";
 };
 
 const getIdentifier = () => {
-  if (IS_DEV) return "com.raahi.app.dev";
-  if (IS_PREVIEW) return "com.raahi.app.preview";
-  return "com.raahi.app";
+  if (IS_DEV) return "com.ridemate.app.dev";
+  if (IS_PREVIEW) return "com.ridemate.app.preview";
+  return "com.ridemate.app";
 };
 
 const getScheme = () => {
-  if (IS_DEV) return "raahi-dev";
-  if (IS_PREVIEW) return "raahi-preview";
-  return "raahi";
+  if (IS_DEV) return "ridemate-dev";
+  if (IS_PREVIEW) return "ridemate-preview";
+  return "ridemate";
 };
 
 const getIcon = () => {
@@ -37,7 +37,7 @@ const getIcon = () => {
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: getAppName(),
-  slug: "raahi",
+  slug: "ridemate",
   version,
   orientation: "default",
   icon: getIcon(),
@@ -59,7 +59,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       "expo-location",
       {
         locationWhenInUsePermission:
-          "Raahi uses your location to find nearby rides.",
+          "RideMate uses your location to find nearby rides.",
       },
     ],
     [

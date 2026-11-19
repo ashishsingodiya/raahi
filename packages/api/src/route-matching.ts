@@ -1,4 +1,4 @@
-import type { MapPoint } from "@raahi/db/schema";
+import type { MapPoint } from "@ridemate/db/schema";
 
 const METERS_PER_DEGREE = 111_195;
 

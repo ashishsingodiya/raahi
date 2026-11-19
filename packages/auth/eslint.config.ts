@@ -1,6 +1,6 @@
 import { defineConfig } from "eslint/config";
 
-import { baseConfig, restrictEnvAccess } from "@raahi/eslint-config/base";
+import { baseConfig, restrictEnvAccess } from "@ridemate/eslint-config/base";
 
 export default defineConfig(
   {

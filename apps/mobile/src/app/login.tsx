@@ -33,7 +33,7 @@ export default function LoginScreen() {
   return (
     <View className="flex-1 items-center justify-center gap-4 bg-background p-6">
       <Text className="text-2xl font-semibold text-foreground">
-        Welcome to Raahi
+        Welcome to RideMate
       </Text>
       <Pressable
         onPress={() => void signInWithGoogle()}

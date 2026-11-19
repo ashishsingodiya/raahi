@@ -8,23 +8,23 @@ import { cva } from "class-variance-authority";
 import { cn } from "cn";
 import { PanelLeftIcon } from "lucide-react";
 
-import { Button } from "@raahi/ui/components/button";
-import { Input } from "@raahi/ui/components/input";
-import { Separator } from "@raahi/ui/components/separator";
+import { Button } from "@ridemate/ui/components/button";
+import { Input } from "@ridemate/ui/components/input";
+import { Separator } from "@ridemate/ui/components/separator";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@raahi/ui/components/sheet";
-import { Skeleton } from "@raahi/ui/components/skeleton";
+} from "@ridemate/ui/components/sheet";
+import { Skeleton } from "@ridemate/ui/components/skeleton";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@raahi/ui/components/tooltip";
-import { useIsMobile } from "@raahi/ui/hooks/use-mobile";
+} from "@ridemate/ui/components/tooltip";
+import { useIsMobile } from "@ridemate/ui/hooks/use-mobile";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;

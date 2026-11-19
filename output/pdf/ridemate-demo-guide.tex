@@ -23,7 +23,7 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{\small\bfseries\textcolor{Pine}{RAAHI}}
+\lhead{\small\bfseries\textcolor{Pine}{RIDEMATE}}
 \rhead{\small\textcolor{Muted}{Android demo guide}}
 \lfoot{\small\textcolor{Muted}{Student carpooling}}
 \rfoot{\small\textcolor{Pine}{\thepage}}
@@ -31,10 +31,10 @@
 \renewcommand{\headrule}{\hbox to\headwidth{\color{Rule}\leaders\hrule height \headrulewidth\hfill}}
 
 \hypersetup{
-  pdftitle={Raahi Android Demo Guide},
+  pdftitle={RideMate Android Demo Guide},
   pdfsubject={Student carpooling and the two-phone product demonstration},
-  pdfauthor={Raahi project},
-  pdfkeywords={Raahi, Android, student carpooling, demo}
+  pdfauthor={RideMate project},
+  pdfkeywords={RideMate, Android, student carpooling, demo}
 }
 \newcommand{\kicker}[1]{{\small\bfseries\textcolor{Pine}{\MakeUppercase{#1}}}\par}
 \newcommand{\pageheading}[2]{%
@@ -52,20 +52,20 @@
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash\bfseries\leavevmode\color{Pine}}p{#1}}
 
 \begin{document}
-\pageheading{Project overview}{Raahi}
+\pageheading{Project overview}{RideMate}
 {\fontsize{16}{21}\selectfont\textcolor{Pine}{Carpooling for verified students}\par}
 \medskip
-Raahi is an Android app that helps students share seats on trips they are already making. A student with a bike or car can offer a ride. Another student can find a trip going their way and ask to join for all or part of the route.
+RideMate is an Android app that helps students share seats on trips they are already making. A student with a bike or car can offer a ride. Another student can find a trip going their way and ask to join for all or part of the route.
 
 \subhead{Why we built it}
-Students often pay for separate autos or cabs while other students travel the same way with spare seats. Finding someone with a compatible route and schedule is hard, especially when students do not know whom they can trust. Raahi brings ride discovery and seat requests into one verified student network.
+Students often pay for separate autos or cabs while other students travel the same way with spare seats. Finding someone with a compatible route and schedule is hard, especially when students do not know whom they can trust. RideMate brings ride discovery and seat requests into one verified student network.
 
 \subhead{Who uses it}
 \begin{tabularx}{\linewidth}{@{}L{31mm}@{\hspace{5mm}}Y@{}}
 \toprule
 Driver & Posts a trip, sets seat availability and price, and reviews the rider's requested pickup and drop-off. \\
 Rider & Finds a ride on the map, chooses where to get on and off, and requests a seat. \\
-Admin & Reviews personal-email profiles in Raahi Studio, a small web dashboard. \\
+Admin & Reviews personal-email profiles in RideMate Studio, a small web dashboard. \\
 \bottomrule
 \end{tabularx}
 
@@ -73,13 +73,13 @@ A student can be a driver on one trip and a rider on another using the same acco
 
 \subhead{How student verification works}
 \begin{enumerate}
-  \item \textbf{Sign in with Google.} On first sign-in, Raahi prefills the name, Google email, and photo when available. The student completes their profile and adds a mobile number.
+  \item \textbf{Sign in with Google.} On first sign-in, RideMate prefills the name, Google email, and photo when available. The student completes their profile and adds a mobile number.
   \item \textbf{Check eligibility.} A Google-verified email on the exact \rtu{} domain qualifies for automatic approval. A personal email goes to the Studio review queue.
   \item \textbf{Unlock rides after approval.} Admins approve or reject personal-email accounts based on the profile shown in Studio. Pending and rejected users can open the app to check their status. The review uses the profile and requires no documents or in-person check.
 \end{enumerate}
 
 \panel{\textbf{Opening line for the demo}\\
-\textquotedblleft Raahi helps verified students find and share rides on routes they already travel.\textquotedblright}
+\textquotedblleft RideMate helps verified students find and share rides on routes they already travel.\textquotedblright}
 
 \newpage
 \pageheading{Student experience}{From search to a seat}
@@ -101,7 +101,7 @@ Rider's trip & & & \bfseries Pickup & \(\rightarrow\) & \bfseries Drop-off & & \
 \begin{enumerate}
   \item \textbf{Distance.} Both requested pins must be within the configured distance of the driver's route. The demo default is \textbf{500 m}.
   \item \textbf{Direction.} The pickup must come before the drop-off along the route. The same endpoints in reverse order can fail the match.
-  \item \textbf{Time.} If the rider asks for a \textbf{9:00 AM} pickup, the default window is \textbf{8:30 to 9:30 AM}. Raahi compares this to the estimated time at the pickup pin, which can be later than the driver's departure.
+  \item \textbf{Time.} If the rider asks for a \textbf{9:00 AM} pickup, the default window is \textbf{8:30 to 9:30 AM}. RideMate compares this to the estimated time at the pickup pin, which can be later than the driver's departure.
 \end{enumerate}
 
 \subhead{Request, review, and confirm}
@@ -109,10 +109,10 @@ The rider can use the default pickup and destination or propose custom pins alon
 
 An accepted request shows the agreed pins, estimated pickup time, recorded price, and meeting instructions. Both students can then see each other's mobile number. Cancelling an upcoming accepted request releases the seat. If the driver cancels the ride, it disappears from search and active requests are cancelled.
 
-\textbf{Payment is direct.} The rider sees the per-seat price before requesting and pays the driver directly. Raahi does not process the payment.
+\textbf{Payment is direct.} The rider sees the per-seat price before requesting and pays the driver directly. RideMate does not process the payment.
 
 \newpage
-\pageheading{Behind the app}{How Raahi works}
+\pageheading{Behind the app}{How RideMate works}
 
 The Android app and Studio use the same backend and database. That is why a ride posted on one phone can appear on another and why an admin decision can unlock a student's ride screens.
 
@@ -128,7 +128,7 @@ The Android app and Studio use the same backend and database. That is why a ride
 \toprule
 Expo and React Native & Student onboarding, ride screens, map pins, foreground location, and booking status. \\
 Next.js and tRPC & Admin review screen and typed API for approvals, ride discovery, and booking decisions. \\
-Better Auth & Google sign-in and sessions. Raahi separately checks student approval before allowing ride actions. \\
+Better Auth & Google sign-in and sessions. RideMate separately checks student approval before allowing ride actions. \\
 PostgreSQL and Drizzle & Store profiles, approval decisions, ride offers, and seat requests. \\
 Google Maps Platform & Renders the map, resolves places through Places API, and supplies driving routes and estimated durations through Compute Routes. \\
 \bottomrule

@@ -1,5 +1,5 @@
 {
-  "name": "@raahi/web",
+  "name": "@ridemate/web",
   "version": "0.1.0",
   "type": "module",
   "private": true,
@@ -12,10 +12,10 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@raahi/api": "workspace:*",
-    "@raahi/auth": "workspace:*",
-    "@raahi/db": "workspace:*",
-    "@raahi/ui": "workspace:*",
+    "@ridemate/api": "workspace:*",
+    "@ridemate/auth": "workspace:*",
+    "@ridemate/db": "workspace:*",
+    "@ridemate/ui": "workspace:*",
     "@t3-oss/env-nextjs": "^0.13.11",
     "@tanstack/react-query": "catalog:",
     "@trpc/client": "catalog:",
@@ -32,8 +32,8 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@raahi/eslint-config": "workspace:*",
-    "@raahi/typescript-config": "workspace:*",
+    "@ridemate/eslint-config": "workspace:*",
+    "@ridemate/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",

@@ -4,7 +4,7 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin } from "better-auth/plugins";
 
-import { db } from "@raahi/db/client";
+import { db } from "@ridemate/db/client";
 
 import { ac, roles } from "./permissions";
 

@@ -1,6 +1,6 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 
-import { appRouter, createTRPCContext } from "@raahi/api";
+import { appRouter, createTRPCContext } from "@ridemate/api";
 
 import { auth } from "~/auth/server";
 

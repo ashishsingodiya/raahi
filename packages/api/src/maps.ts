@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-import { env } from "@raahi/auth/env";
+import { env } from "@ridemate/auth/env";
 
 export const pointSchema = z.object({
   latitude: z.number().min(-90).max(90),
@@ -114,7 +114,7 @@ export async function routeOptions(input: z.infer<typeof routeInput>) {
 
 function signPreview(payload: string) {
   return createHmac("sha256", env.BETTER_AUTH_SECRET)
-    .update("raahi-route-preview:")
+    .update("ridemate-route-preview:")
     .update(payload)
     .digest();
 }

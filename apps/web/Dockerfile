@@ -21,8 +21,8 @@ RUN pnpm add -g turbo@^2
 # Copy entire monorepo (filtered by .dockerignore)
 COPY . .
 
-# Generate a pruned monorepo for @raahi/web
-RUN turbo prune @raahi/web --docker
+# Generate a pruned monorepo for @ridemate/web
+RUN turbo prune @ridemate/web --docker
 
 # ============================================
 # Stage 3: Builder — install deps & build
@@ -49,7 +49,7 @@ RUN pnpm install --frozen-lockfile
 COPY --from=prepare /app/out/full/ .
 
 # Build the Next.js app
-RUN pnpm turbo run build --filter=@raahi/web...
+RUN pnpm turbo run build --filter=@ridemate/web...
 
 # ============================================
 # Stage 4: Runner — minimal production image

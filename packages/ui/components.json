@@ -11,10 +11,10 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@raahi/ui/components",
-    "ui": "@raahi/ui/components",
-    "hooks": "@raahi/ui/hooks",
-    "lib": "@raahi/ui/lib",
-    "utils": "@raahi/ui/lib/utils"
+    "components": "@ridemate/ui/components",
+    "ui": "@ridemate/ui/components",
+    "hooks": "@ridemate/ui/hooks",
+    "lib": "@ridemate/ui/lib",
+    "utils": "@ridemate/ui/lib/utils"
   }
 }

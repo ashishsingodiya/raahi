@@ -1,8 +1,8 @@
 import { TRPCError } from "@trpc/server";
 
-import type { ride as rideTable } from "@raahi/db/schema";
-import { and, eq, isNotNull, lte } from "@raahi/db";
-import { ride } from "@raahi/db/schema";
+import type { ride as rideTable } from "@ridemate/db/schema";
+import { and, eq, isNotNull, lte } from "@ridemate/db";
+import { ride } from "@ridemate/db/schema";
 
 import type { Context } from "./trpc";
 import { routeOptions } from "./maps";

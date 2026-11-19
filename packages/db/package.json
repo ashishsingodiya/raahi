@@ -1,5 +1,5 @@
 {
-  "name": "@raahi/db",
+  "name": "@ridemate/db",
   "private": true,
   "type": "module",
   "exports": {
@@ -24,8 +24,8 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@raahi/eslint-config": "workspace:*",
-    "@raahi/typescript-config": "workspace:*",
+    "@ridemate/eslint-config": "workspace:*",
+    "@ridemate/typescript-config": "workspace:*",
     "@types/node": "catalog:",
     "drizzle-kit": "^0.31.11",
     "eslint": "catalog:",

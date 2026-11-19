@@ -1,6 +1,6 @@
-# Raahi
+# RideMate
 
-A monorepo containing the Next.js web application & admin dashboard (`@raahi/web`), Expo mobile application (`@raahi/mobile`), and shared packages (`@raahi/api`, `@raahi/auth`, `@raahi/db`, `@raahi/ui`).
+A monorepo containing the Next.js web application & admin dashboard (`@ridemate/web`), Expo mobile application (`@ridemate/mobile`), and shared packages (`@ridemate/api`, `@ridemate/auth`, `@ridemate/db`, `@ridemate/ui`).
 
 ## Android MVP demo
 
@@ -9,7 +9,11 @@ A monorepo containing the Next.js web application & admin dashboard (`@raahi/web
 3. From `apps/mobile`, run `eas build --platform android --profile preview` after linking the app to an EAS project and configuring the preview variables. Install the same APK on two phones. On one phone, test that the map, foreground location, place search, and route preview work before the scheduled demo.
 4. Use a Google-verified `rtu.ac.in` account and a personal Google account. Finish onboarding on both phones and approve the personal account in Studio. Post a ride, find it from the second phone, request a seat with custom pins, and accept from the first phone. Check that both students now see each other's contact details.
 
-Use a disposable database to run the booking integration test. Apply `pnpm db:migrate` with its URL in `POSTGRES_URL`, then run `pnpm --filter @raahi/api test` with the same URL in `TEST_POSTGRES_URL`. The test uses synthetic Google Routes responses.
+For native Android Maps, authorize each package you build on `GOOGLE_MAPS_ANDROID_KEY` using that variant’s signing certificate SHA-1. The package IDs are `com.ridemate.app.dev` for development, `com.ridemate.app.preview` for preview, and `com.ridemate.app` for production. Deploy the backend with the matching RideMate sign-in schemes before testing Google sign-in on the new APKs.
+
+For local Android builds, generate the native project for the target `APP_VARIANT` when switching variants. The generated `apps/mobile/android` folder contains one variant at a time.
+
+Use a disposable database to run the booking integration test. Apply `pnpm db:migrate` with its URL in `POSTGRES_URL`, then run `pnpm --filter @ridemate/api test` with the same URL in `TEST_POSTGRES_URL`. The test uses synthetic Google Routes responses.
 
 If the test database will stay online after the demo, schedule a daily cleanup of expired route coordinates with `UPDATE ride SET route = NULL WHERE route_expires_at <= now() AND route IS NOT NULL;`. Active routes are refreshed when requested again.
 
@@ -44,7 +48,7 @@ docker buildx build \
   --platform linux/amd64 \
   -f apps/web/Dockerfile \
   --build-arg NEXT_PUBLIC_APP_URL=https://your-domain.com \
-  -t ghcr.io/ashishsingodiya/raahi-web:latest \
+  -t ghcr.io/ashishsingodiya/ridemate-web:latest \
   .
 ```
 
@@ -56,7 +60,7 @@ docker buildx build \
    ```
 2. **Push image**:
    ```bash
-   docker push ghcr.io/ashishsingodiya/raahi-web:latest
+   docker push ghcr.io/ashishsingodiya/ridemate-web:latest
    ```
 
 ---
@@ -71,10 +75,10 @@ Create a `.env` file on your VPS in the deployment directory:
 # Database Credentials
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=your_secure_db_password
-POSTGRES_DB=raahi
+POSTGRES_DB=ridemate
 
 # Database Connection (Uses internal Docker service name 'postgres')
-POSTGRES_URL=postgresql://postgres:your_secure_db_password@postgres:5432/raahi
+POSTGRES_URL=postgresql://postgres:your_secure_db_password@postgres:5432/ridemate
 
 # App Config & Authentication
 BETTER_AUTH_SECRET=your_better_auth_secret
@@ -92,12 +96,12 @@ services:
   # 1. Self-hosted PostgreSQL (No public ports exposed)
   postgres:
     image: postgres:18-alpine
-    container_name: raahi-postgres
+    container_name: ridemate-postgres
     restart: always
     env_file:
       - .env
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
@@ -106,8 +110,8 @@ services:
 
   # 2. Next.js Web App
   web:
-    image: ghcr.io/ashishsingodiya/raahi-web:latest
-    container_name: raahi-web
+    image: ghcr.io/ashishsingodiya/ridemate-web:latest
+    container_name: ridemate-web
     restart: always
     ports:
       - "3000:3000"
@@ -140,7 +144,7 @@ To maintain maximum security, the PostgreSQL container does **not** expose port 
    SSH into your VPS (`ssh my-vps`) and inspect the postgres container IP:
 
    ```bash
-   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' raahi-postgres
+   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ridemate-postgres
    ```
 
    _(Example output: `172.18.0.2`)_
@@ -157,7 +161,7 @@ To maintain maximum security, the PostgreSQL container does **not** expose port 
 With the SSH tunnel active in Terminal 1, open Terminal 2 on your Mac and run Drizzle Studio:
 
 ```bash
-POSTGRES_URL="postgresql://postgres:your_secure_db_password@localhost:5433/raahi" pnpm db:studio
+POSTGRES_URL="postgresql://postgres:your_secure_db_password@localhost:5433/ridemate" pnpm db:studio
 ```
 
 Open the Drizzle Studio link in your browser to inspect or manage production data safely.
@@ -167,7 +171,7 @@ Open the Drizzle Studio link in your browser to inspect or manage production dat
 To apply schema changes to the remote database from your Mac via the active SSH tunnel:
 
 ```bash
-POSTGRES_URL="postgresql://postgres:your_secure_db_password@localhost:5433/raahi" pnpm db:push
+POSTGRES_URL="postgresql://postgres:your_secure_db_password@localhost:5433/ridemate" pnpm db:push
 ```
 
 ---
@@ -181,7 +185,7 @@ POSTGRES_URL="postgresql://postgres:your_secure_db_password@localhost:5433/raahi
 docker compose ps
 
 # View web logs
-docker logs -f raahi-web
+docker logs -f ridemate-web
 ```
 
 ### Database Backup
@@ -189,5 +193,5 @@ docker logs -f raahi-web
 Run a `pg_dump` backup directly from the container to your VPS disk:
 
 ```bash
-docker exec raahi-postgres pg_dump -U postgres raahi | gzip > ~/backups/db-$(date +%F).sql.gz
+docker exec ridemate-postgres pg_dump -U postgres ridemate | gzip > ~/backups/db-$(date +%F).sql.gz
 ```

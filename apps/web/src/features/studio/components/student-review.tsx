@@ -6,8 +6,8 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@raahi/ui/components/avatar";
-import { Button } from "@raahi/ui/components/button";
+} from "@ridemate/ui/components/avatar";
+import { Button } from "@ridemate/ui/components/button";
 
 import { useTRPC } from "~/trpc/react";
 

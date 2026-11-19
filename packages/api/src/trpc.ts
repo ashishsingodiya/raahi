@@ -2,10 +2,10 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { z, ZodError } from "zod";
 
-import type { Auth } from "@raahi/auth";
-import type { Action, Resource } from "@raahi/auth/permissions";
-import { hasPermission } from "@raahi/auth/permissions";
-import { db } from "@raahi/db/client";
+import type { Auth } from "@ridemate/auth";
+import type { Action, Resource } from "@ridemate/auth/permissions";
+import { hasPermission } from "@ridemate/auth/permissions";
+import { db } from "@ridemate/db/client";
 
 import { getStudentProfile } from "./student";
 

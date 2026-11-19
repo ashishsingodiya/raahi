@@ -8,14 +8,14 @@ import { getBaseUrl } from "./base-url";
 
 const scheme = Array.isArray(Constants.expoConfig?.scheme)
   ? Constants.expoConfig.scheme[0]
-  : (Constants.expoConfig?.scheme ?? "raahi");
+  : (Constants.expoConfig?.scheme ?? "ridemate");
 
 export const authClient = createAuthClient({
   baseURL: getBaseUrl(),
   plugins: [
     expoClient({
       scheme: scheme,
-      storagePrefix: "raahi",
+      storagePrefix: "ridemate",
       storage: SecureStore,
     }),
     adminClient(),

@@ -1,5 +1,5 @@
 {
-  "name": "@raahi/api",
+  "name": "@ridemate/api",
   "private": true,
   "type": "module",
   "exports": {
@@ -11,15 +11,15 @@
     "test": "node --import tsx --test src/*.test.ts"
   },
   "dependencies": {
-    "@raahi/auth": "workspace:*",
-    "@raahi/db": "workspace:*",
+    "@ridemate/auth": "workspace:*",
+    "@ridemate/db": "workspace:*",
     "@trpc/server": "catalog:",
     "superjson": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@raahi/eslint-config": "workspace:*",
-    "@raahi/typescript-config": "workspace:*",
+    "@ridemate/eslint-config": "workspace:*",
+    "@ridemate/typescript-config": "workspace:*",
     "@types/node": "catalog:",
     "eslint": "catalog:",
     "tsx": "4.23.15",

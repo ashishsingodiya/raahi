@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { test } from "node:test";
 
-import type { Session } from "@raahi/auth";
-import { inArray } from "@raahi/db";
-import { studentProfile, user } from "@raahi/db/schema";
+import type { Session } from "@ridemate/auth";
+import { inArray } from "@ridemate/db";
+import { studentProfile, user } from "@ridemate/db/schema";
 
 // eslint-disable-next-line turbo/no-undeclared-env-vars -- Only the opt-in integration test reads this URL.
 const testDatabase = process.env.TEST_POSTGRES_URL;
@@ -24,7 +24,7 @@ void test(
     process.env.GOOGLE_MAPS_SERVER_KEY = "test-key";
 
     const { createCaller } = await import("./index");
-    const { db } = await import("@raahi/db/client");
+    const { db } = await import("@ridemate/db/client");
 
     const prefix = randomUUID();
     const users = [

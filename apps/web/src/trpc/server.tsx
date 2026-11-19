@@ -6,7 +6,7 @@ import { headers } from "next/headers";
 import { dehydrate, HydrationBoundary, noop } from "@tanstack/react-query";
 import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 
-import { appRouter, createTRPCContext } from "@raahi/api";
+import { appRouter, createTRPCContext } from "@ridemate/api";
 
 import { auth } from "~/auth/server";
 import { makeQueryClient } from "./query-client";

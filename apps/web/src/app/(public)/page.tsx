@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { canAccessStudio } from "@raahi/auth/permissions";
-import { Button } from "@raahi/ui/components/button";
+import { canAccessStudio } from "@ridemate/auth/permissions";
+import { Button } from "@ridemate/ui/components/button";
 
 import { getSession } from "~/auth/server";
 import { UserMenu } from "~/features/auth/components/user-menu";
@@ -13,11 +13,11 @@ export default async function Home() {
 
   return (
     <main className="mx-auto flex min-h-svh w-full max-w-sm flex-col items-start justify-center gap-4 px-6">
-      <h1 className="text-3xl font-bold tracking-tight">Raahi Studio</h1>
+      <h1 className="text-3xl font-bold tracking-tight">RideMate Studio</h1>
       {session ? (
         <>
           <p className="text-muted-foreground">
-            This account doesn’t have admin access. Students use the Raahi
+            This account doesn’t have admin access. Students use the RideMate
             Android app.
           </p>
           <UserMenu user={session.user} variant="full" />

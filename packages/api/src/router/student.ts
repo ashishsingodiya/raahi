@@ -1,8 +1,8 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-import { and, asc, eq } from "@raahi/db";
-import { studentProfile, user } from "@raahi/db/schema";
+import { and, asc, eq } from "@ridemate/db";
+import { studentProfile, user } from "@ridemate/db/schema";
 
 import {
   getStudentProfile,

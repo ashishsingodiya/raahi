@@ -15,14 +15,14 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 
-import type { Session } from "@raahi/auth";
-import { canAccessStudio } from "@raahi/auth/permissions";
+import type { Session } from "@ridemate/auth";
+import { canAccessStudio } from "@ridemate/auth/permissions";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@raahi/ui/components/avatar";
-import { Button } from "@raahi/ui/components/button";
+} from "@ridemate/ui/components/avatar";
+import { Button } from "@ridemate/ui/components/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,8 +31,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@raahi/ui/components/dropdown-menu";
-import { cn } from "@raahi/ui/lib/utils";
+} from "@ridemate/ui/components/dropdown-menu";
+import { cn } from "@ridemate/ui/lib/utils";
 
 import { authClient } from "~/auth/client";
 

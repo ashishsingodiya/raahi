@@ -1,8 +1,8 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-import { and, desc, eq, or, sql } from "@raahi/db";
-import { ride, seatRequest, studentProfile } from "@raahi/db/schema";
+import { and, desc, eq, or, sql } from "@ridemate/db";
+import { ride, seatRequest, studentProfile } from "@ridemate/db/schema";
 
 import type { Context } from "../trpc";
 import { pointSchema } from "../maps";

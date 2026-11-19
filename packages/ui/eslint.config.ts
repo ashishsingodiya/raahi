@@ -1,7 +1,7 @@
 import { defineConfig } from "eslint/config";
 
-import { baseConfig } from "@raahi/eslint-config/base";
-import { reactConfig } from "@raahi/eslint-config/react";
+import { baseConfig } from "@ridemate/eslint-config/base";
+import { reactConfig } from "@ridemate/eslint-config/react";
 
 export default defineConfig(
   {

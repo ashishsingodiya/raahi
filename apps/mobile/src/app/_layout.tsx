@@ -10,7 +10,7 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <Stack>
-        <Stack.Screen name="index" options={{ title: "Raahi" }} />
+        <Stack.Screen name="index" options={{ title: "RideMate" }} />
         <Stack.Screen name="(student)" options={{ headerShown: false }} />
         <Stack.Screen
           name="login"

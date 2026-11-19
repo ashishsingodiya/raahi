@@ -1,5 +1,5 @@
 {
-  "name": "@raahi/mobile",
+  "name": "@ridemate/mobile",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -49,9 +49,9 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@raahi/api": "workspace:*",
-    "@raahi/eslint-config": "workspace:*",
-    "@raahi/typescript-config": "workspace:*",
+    "@ridemate/api": "workspace:*",
+    "@ridemate/eslint-config": "workspace:*",
+    "@ridemate/typescript-config": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
     "eslint": "catalog:",
