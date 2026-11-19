@@ -10,7 +10,7 @@ The starter already has an Expo app, Google sign-in through Better Auth, the Nex
 
 - Prove the map stack on an Android phone early and keep independent onboarding and booking work moving during that check.
 - Apply eligibility, route validation, seat capacity, and contact disclosure on the server.
-- Make the full two-phone flow demonstrable with a small test deployment and no Google Maps billing setup.
+- Make the full two-phone flow demonstrable with a small test deployment and the selected billing-enabled Google Maps configuration.
 
 **Non-Goals**
 
@@ -27,9 +27,9 @@ Store approval status and approval source on the student profile. Determine auto
 
 ### Prove Google Maps in the Android preview APK
 
-Test a preview APK against the shared HTTPS backend on a physical phone. Verify that the actual Demo Key supports the native Android map and that Places and Compute Routes respond. Reuse the repo's Android preview app identity and configure Android key restrictions to match the package and signing certificate where applicable. Keep server-side provider credentials out of the APK and source control.
+Test the manually built preview APK against the shared HTTPS backend on a physical phone. Native Android Maps was confirmed in the development build using a billing-enabled key. Verify that the preview package and signing certificate match the Android key restriction and that the backend's Places and Compute Routes respond. Keep server-side provider credentials out of the APK and source control.
 
-Use `react-native-maps` for the native Google map and `expo-location` for foreground location. Keep place search and route acquisition behind tRPC. If the issued key lacks native Maps SDK access, test a hosted Google Maps JavaScript view inside the Expo app through a WebView on Android. The student workflow remains in the installed app. If neither approach passes on a physical phone, surface the blocker before relying on the selected demo key for submission.
+Use `react-native-maps` for the native Google map and `expo-location` for foreground location. Keep place search and route acquisition behind tRPC. A hosted Google Maps JavaScript view remains available through the app's WebView configuration.
 
 Limit Places calls with debounced search and request only the fields the UI uses. Compute a route when a driver requests a preview or changes route inputs. Reuse eligible route data within Google Maps Platform limits. Keep provider-derived data on a defined expiry and refresh path and store only what applicable terms permit. Nearby ride lookups and seat decisions use Raahi's own records.
 
@@ -49,7 +49,7 @@ Build public ride and request responses with explicit field lists. Fetch the oth
 
 ## Risks / Trade-offs
 
-- Demo Key support and daily limits → Test the actual credential in a signed APK and keep provider calls separate from ordinary discovery refreshes.
+- Android key restrictions depend on the package and signing certificate → Check each signed APK with the Android key configured for that variant.
 - Distance to the route can include a pin across a physical barrier → Show both proposed pins to the driver before acceptance so the driver can decline an unsuitable meeting point.
 - Approximate pickup time can vary with traffic → Label it as estimated and include meeting instructions for coordination.
 - Whole-ride capacity can leave an empty seat on part of a trip → Use one reservation rule for the demo and keep the agreed pickup and drop-off on each request.

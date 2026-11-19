@@ -100,27 +100,38 @@ function PlacePicker({
         <Text className="pt-5 text-2xl font-bold text-foreground">{label}</Text>
         <Field
           label="Search places"
+          editable={!location.isPending}
           value={search}
           maxLength={100}
           onChangeText={setSearch}
           placeholder="Address or place name"
         />
-        {suggestions.data?.map((suggestion) => (
-          <Pressable
-            key={suggestion.id}
-            accessibilityRole="button"
-            className="rounded-xl border border-border bg-card p-3"
-            disabled={location.isPending}
-            onPress={() => location.mutate(suggestion)}
-          >
-            <Text className="text-foreground">{suggestion.label}</Text>
-          </Pressable>
-        ))}
+        {search.trim() === debounced &&
+          suggestions.data?.map((suggestion) => (
+            <Pressable
+              key={suggestion.id}
+              accessibilityRole="button"
+              className="rounded-xl border border-border bg-card p-3"
+              disabled={location.isPending}
+              onPress={() => location.mutate(suggestion)}
+            >
+              <Text className="text-foreground">{suggestion.label}</Text>
+            </Pressable>
+          ))}
         <RideMap
           center={selection ?? center}
           route={route}
           markers={selection ? [{ ...selection, label }] : []}
-          onPin={(point) => setSelection(placeFromPin(point))}
+          onPin={
+            location.isPending
+              ? undefined
+              : (point) => {
+                  location.reset();
+                  setSelection(placeFromPin(point));
+                  setSearch("");
+                  setDebounced("");
+                }
+          }
         />
         <Message>{selection?.label ?? "Tap the map to drop a pin."}</Message>
         {suggestions.error || location.error ? (
@@ -129,7 +140,7 @@ function PlacePicker({
           </Message>
         ) : null}
         <Action
-          disabled={!selection}
+          disabled={!selection || location.isPending}
           onPress={() => {
             if (selection) onChange(selection);
           }}

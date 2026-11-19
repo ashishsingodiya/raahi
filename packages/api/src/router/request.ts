@@ -25,6 +25,7 @@ const requestFields = {
   pickupAt: seatRequest.pickupAt,
   directedTo: ride.destinationLabel,
   pricePaise: seatRequest.pricePaise,
+  rideCancelled: ride.cancelled,
   departure: ride.departure,
   driverId: ride.driverId,
   riderId: seatRequest.riderId,
@@ -198,8 +199,9 @@ export const requestRouter = {
     const driver = row.driverId === ctx.session.user.id;
     return {
       id: row.id,
-      upcoming: row.departure.getTime() > Date.now(),
+      upcoming: !row.rideCancelled && row.departure.getTime() > Date.now(),
       status: row.status,
+      rideCancelled: row.rideCancelled,
       pickup: row.pickup,
       dropoff: row.dropoff,
       pickupAt: row.pickupAt,

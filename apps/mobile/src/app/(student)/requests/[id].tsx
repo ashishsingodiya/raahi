@@ -50,7 +50,9 @@ export default function RequestDetailsScreen() {
     <Screen>
       <View className="gap-1">
         <Text className="text-3xl font-bold text-foreground">
-          {statuses[request.status]}
+          {request.rideCancelled && request.status === "cancelled"
+            ? "Ride cancelled"
+            : statuses[request.status]}
         </Text>
         <Text className="text-lg font-semibold text-foreground">
           {request.directedTo}
@@ -73,7 +75,7 @@ export default function RequestDetailsScreen() {
       </Text>
       <Message>
         {readablePrice(request.pricePaise)}
-        {request.pricePaise ? " · Paid directly to the driver" : ""}
+        {request.pricePaise ? " · Pay the driver directly" : ""}
       </Message>
       {number ? (
         <View className="gap-3 rounded-2xl border border-border bg-card p-4">

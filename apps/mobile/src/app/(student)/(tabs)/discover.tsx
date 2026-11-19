@@ -11,9 +11,13 @@ import {
   formatTime,
   readablePrice,
 } from "~/features/rides/date-field";
-import { mapCenter, RideMap } from "~/features/rides/map";
+import {
+  foregroundLocationPermissionKey,
+  mapCenter,
+  RideMap,
+} from "~/features/rides/map";
 import { PlaceButton, placeFromPin } from "~/features/rides/place-picker";
-import { trpc } from "~/utils/api";
+import { queryClient, trpc } from "~/utils/api";
 
 export default function DiscoverScreen() {
   const [pickup, setPickup] = useState<Place>();
@@ -29,6 +33,12 @@ export default function DiscoverScreen() {
     const requestId = ++locationIntentRef.current;
     try {
       const permission = await Location.requestForegroundPermissionsAsync();
+      await queryClient.cancelQueries({
+        queryKey: foregroundLocationPermissionKey,
+        exact: true,
+      });
+      queryClient.setQueryData(foregroundLocationPermissionKey, permission);
+      if (requestId !== locationIntentRef.current) return;
       if (!permission.granted) {
         setLocationMessage(
           "Choose a pickup pin to search without location permission.",
@@ -45,9 +55,10 @@ export default function DiscoverScreen() {
           label: "Current location",
         });
     } catch {
-      setLocationMessage(
-        "Your location is unavailable. You can choose a pickup pin.",
-      );
+      if (requestId === locationIntentRef.current)
+        setLocationMessage(
+          "Your location is unavailable. You can choose a pickup pin.",
+        );
     }
   }, []);
 
@@ -145,13 +156,13 @@ export default function DiscoverScreen() {
                 pathname: "/rides/[id]",
                 params: {
                   id: ride.id,
+                  time: filterTime ? time.toISOString() : undefined,
                   ...(pickup && dropoff
                     ? {
                         plat: String(pickup.latitude),
                         plng: String(pickup.longitude),
                         dlat: String(dropoff.latitude),
                         dlng: String(dropoff.longitude),
-                        time: filterTime ? time.toISOString() : undefined,
                       }
                     : {}),
                 },

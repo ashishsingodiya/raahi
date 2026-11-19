@@ -48,7 +48,10 @@ export default function ActivityScreen() {
           </Text>
           <Message>
             {request.role === "driver" ? "Incoming" : "Requested"} ·{" "}
-            {request.status} · {formatTime(request.pickupAt)}
+            {request.rideCancelled && request.status === "cancelled"
+              ? "Ride cancelled"
+              : request.status}{" "}
+            · {formatTime(request.pickupAt)}
           </Message>
           <Action
             secondary

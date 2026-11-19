@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { View } from "react-native";
+import { AppState, View } from "react-native";
 import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from "react-native-maps";
 import { WebView } from "react-native-webview";
 import Constants from "expo-constants";
+import { getForegroundPermissionsAsync } from "expo-location";
+import { useQuery } from "@tanstack/react-query";
 import { z } from "zod";
 
 import { Message } from "~/components/ui";
@@ -28,6 +30,9 @@ interface MapProps {
 }
 
 export const mapCenter = { latitude: 25.16, longitude: 75.81 };
+export const foregroundLocationPermissionKey = [
+  "foreground-location-permission",
+] as const;
 const message = z.discriminatedUnion("type", [
   z.object({ type: z.literal("ready") }),
   z.object({ type: z.literal("error") }),
@@ -48,8 +53,21 @@ function NativeMap({
   const mapRef = useRef<MapView>(null);
   const focusedRef = useRef<string | undefined>(undefined);
   const [ready, setReady] = useState(false);
+  const { data: permission, refetch: refreshPermission } = useQuery({
+    queryKey: foregroundLocationPermissionKey,
+    queryFn: getForegroundPermissionsAsync,
+    retry: false,
+  });
+  const showMyLocation = permission?.granted === true;
   const latitude = center?.latitude;
   const longitude = center?.longitude;
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (state) => {
+      if (state === "active") void refreshPermission({ cancelRefetch: false });
+    });
+    return () => subscription.remove();
+  }, [refreshPermission]);
 
   useEffect(() => {
     if (ready && latitude !== undefined && longitude !== undefined) {
@@ -80,6 +98,8 @@ function NativeMap({
     <MapView
       ref={mapRef}
       provider={PROVIDER_GOOGLE}
+      showsUserLocation={showMyLocation}
+      showsMyLocationButton={showMyLocation}
       style={{ flex: 1 }}
       initialRegion={{
         ...(center ?? mapCenter),

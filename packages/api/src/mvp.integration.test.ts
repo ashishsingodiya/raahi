@@ -356,8 +356,17 @@ void test(
     );
     const firstWon = decisions[0].status === "fulfilled";
     const winner = firstWon ? firstRider : secondRider;
+    const otherRider = firstWon ? secondRider : firstRider;
     const winnerId = firstWon ? a.id : b.id;
     const declinedId = firstWon ? b.id : a.id;
+    const accepted = await winner.request.detail(winnerId);
+    assert.equal(accepted.status, "accepted");
+    assert.equal(
+      accepted.pricePaise,
+      matches.find((ride) => ride.id === paid.id)?.pricePaise,
+    );
+    assert.deepEqual(accepted.pickup, pickup);
+    assert.deepEqual(accepted.dropoff, dropoff);
     assert.equal(
       (await winner.request.detail(winnerId)).contact?.mobileNumber,
       `+91${driverNumber}`,
@@ -373,6 +382,10 @@ void test(
     await assert.rejects(other.request.detail(winnerId), { code: "NOT_FOUND" });
     assert.equal((await firstRider.ride.detail(paid.id)).availableSeats, 0);
     await driver.request.decide({ id: declinedId, action: "decline" });
+    assert.equal(
+      (await otherRider.request.detail(declinedId)).status,
+      "declined",
+    );
     assert.equal((await driver.request.detail(declinedId)).contact, undefined);
     await Promise.all([
       winner.request.decide({ id: winnerId, action: "cancel" }),
@@ -385,10 +398,19 @@ void test(
       rideId: free.id,
       expectedPricePaise: 0,
     });
+    await driver.request.decide({ id: cancelled.id, action: "accept" });
+    assert.equal((await firstRider.request.detail(cancelled.id)).pricePaise, 0);
     await driver.ride.cancel(free.id);
-    assert.equal(
-      (await firstRider.request.detail(cancelled.id)).status,
-      "cancelled",
+    const cancelledDetail = await firstRider.request.detail(cancelled.id);
+    assert.equal(cancelledDetail.status, "cancelled");
+    assert.equal(cancelledDetail.rideCancelled, true);
+    assert.equal(cancelledDetail.upcoming, false);
+    assert.equal(cancelledDetail.contact, undefined);
+    const inbox = await driver.request.list();
+    assert.ok(
+      inbox.some(
+        (request) => request.id === cancelled.id && request.rideCancelled,
+      ),
     );
     assert.equal(
       (await firstRider.ride.discover({ pickup, dropoff })).some(

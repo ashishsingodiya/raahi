@@ -29,4 +29,4 @@ Students often pay for separate transport while other students travelling in the
 - The Expo Android app gains student onboarding, map and ride screens, and booking screens.
 - The Next.js app hosts the shared tRPC API and minimal Studio review queue.
 - Better Auth provides sign-in. Drizzle and PostgreSQL store student profiles, review decisions, offers, and seat requests.
-- Google Maps provides map rendering, places, and routes for the test deployment, subject to verification of the Demo Key in a signed Android preview build.
+- Google Maps provides native map rendering, places, and routes for the test deployment. The billing-enabled Android key works in the development build. The signed Android preview build still needs verification.

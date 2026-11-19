@@ -24,14 +24,7 @@ export default function OfferScreen() {
   const [price, setPrice] = useState("");
   const [instructions, setInstructions] = useState("");
   const [routeIndex, setRouteIndex] = useState(0);
-  const preview = useMutation(
-    trpc.ride.preview.mutationOptions({
-      onSuccess: () => {
-        setRouteIndex(0);
-        setPickup(start);
-      },
-    }),
-  );
+  const preview = useMutation(trpc.ride.preview.mutationOptions());
   const publish = useMutation(
     trpc.ride.publish.mutationOptions({
       onSuccess: (ride) => {
@@ -50,7 +43,13 @@ export default function OfferScreen() {
     }),
   );
 
-  const selected = preview.data?.[routeIndex];
+  const routes =
+    preview.variables?.start === start &&
+    preview.variables?.destination === destination &&
+    preview.variables?.vehicle === vehicle
+      ? preview.data
+      : undefined;
+  const selected = routes?.[routeIndex];
   const cost = paid ? Math.round(Number(price) * 100) : 0;
   const validCost =
     !paid ||
@@ -127,14 +126,17 @@ export default function OfferScreen() {
         secondary
         disabled={!start || !destination || preview.isPending}
         onPress={() => {
-          if (start && destination)
+          if (start && destination) {
+            setRouteIndex(0);
+            setPickup(start);
             preview.mutate({ start, destination, vehicle });
+          }
         }}
       >
         {preview.isPending ? "Finding routes…" : "Preview routes"}
       </Action>
       {preview.error ? <Message error>{preview.error.message}</Message> : null}
-      {preview.data?.map((route, i) => (
+      {routes?.map((route, i) => (
         <Action
           key={route.option}
           secondary={i !== routeIndex}

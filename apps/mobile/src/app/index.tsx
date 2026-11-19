@@ -8,7 +8,7 @@ import { queryClient } from "~/utils/api";
 import { authClient } from "~/utils/auth";
 
 export default function HomeScreen() {
-  const { session, profile } = useStudent();
+  const { session, profile, profileKey } = useStudent();
 
   async function signOut() {
     const result = await authClient.signOut();
@@ -61,7 +61,10 @@ export default function HomeScreen() {
               name={user.name}
               email={user.email}
               image={user.image}
-              onComplete={() => void profile.refetch()}
+              onComplete={(saved) => {
+                if (saved) queryClient.setQueryData(profileKey, saved);
+                else void profile.refetch();
+              }}
             />
           )}
           <Action secondary onPress={() => void signOut()}>
