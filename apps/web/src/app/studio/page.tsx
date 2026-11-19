@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Dashboard",
-};
+import { StudentReview } from "~/features/studio/components/student-review";
 
-export default function StudioDashboardPage() {
+export const metadata: Metadata = { title: "Student approvals" };
+
+export default function StudioPage() {
   return (
-    <div>
-      <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
-      <p className="mt-1 text-sm text-muted-foreground">
-        Overview of your workspace and platform activity.
-      </p>
-      <div className="mt-8 rounded-xl border border-dashed bg-card/50 p-12 text-center text-sm text-muted-foreground">
-        Dashboard analytics and recent activity coming soon.
+    <div className="w-full max-w-3xl space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold tracking-tight">Student approvals</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Review students who sign in with a personal email.
+        </p>
       </div>
+      <StudentReview />
     </div>
   );
 }

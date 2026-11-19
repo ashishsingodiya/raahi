@@ -7,6 +7,8 @@ import type { Action, Resource } from "@raahi/auth/permissions";
 import { hasPermission } from "@raahi/auth/permissions";
 import { db } from "@raahi/db/client";
 
+import { getStudentProfile } from "./student";
+
 export const createTRPCContext = async (opts: {
   headers: Headers;
   auth: Auth;
@@ -46,6 +48,19 @@ export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
   }
   return next({ ctx: { session: ctx.session } });
 });
+
+export const studentProcedure = protectedProcedure.use(
+  async ({ ctx, next }) => {
+    const profile = await getStudentProfile(ctx.db, ctx.session.user.id);
+    if (profile?.status !== "approved") {
+      throw new TRPCError({
+        code: "FORBIDDEN",
+        message: "Student approval is required.",
+      });
+    }
+    return next({ ctx: { student: profile } });
+  },
+);
 
 /** Logged-in users whose role grants `resource:action`. */
 export const requirePermission = <R extends Resource>(

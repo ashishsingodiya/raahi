@@ -2,6 +2,17 @@
 
 A monorepo containing the Next.js web application & admin dashboard (`@raahi/web`), Expo mobile application (`@raahi/mobile`), and shared packages (`@raahi/api`, `@raahi/auth`, `@raahi/db`, `@raahi/ui`).
 
+## Android MVP demo
+
+1. Deploy the Next.js app over HTTPS with a shared PostgreSQL database. Apply `pnpm db:migrate` against that database, then check `/api/health`. Set `NEXT_PUBLIC_APP_URL` to the deployed origin and register its `/api/auth/callback/google` URL in Google OAuth. If the OAuth app is in testing, add the demo Google accounts in the Google console.
+2. Set `GOOGLE_MAPS_SERVER_KEY` on the backend for Places and Routes. For the Android preview build, set `EXPO_PUBLIC_SERVER_URL` to the HTTPS origin and supply `GOOGLE_MAPS_ANDROID_KEY`. If the demo key supports Maps JavaScript only, set `GOOGLE_MAPS_WEB_KEY` on the backend and set `EXPO_PUBLIC_GOOGLE_MAPS_WEBVIEW=1` in the preview build environment.
+3. From `apps/mobile`, run `eas build --platform android --profile preview` after linking the app to an EAS project and configuring the preview variables. Install the same APK on two phones. On one phone, test that the map, foreground location, place search, and route preview work before the scheduled demo.
+4. Use a Google-verified `rtu.ac.in` account and a personal Google account. Finish onboarding on both phones and approve the personal account in Studio. Post a ride, find it from the second phone, request a seat with custom pins, and accept from the first phone. Check that both students now see each other's contact details.
+
+Use a disposable database to run the booking integration test. Apply `pnpm db:migrate` with its URL in `POSTGRES_URL`, then run `pnpm --filter @raahi/api test` with the same URL in `TEST_POSTGRES_URL`. The test uses synthetic Google Routes responses.
+
+If the test database will stay online after the demo, schedule a daily cleanup of expired route coordinates with `UPDATE ride SET route = NULL WHERE route_expires_at <= now() AND route IS NOT NULL;`. Active routes are refreshed when requested again.
+
 ---
 
 ## Table of Contents

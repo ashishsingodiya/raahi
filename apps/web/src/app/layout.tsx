@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     default: "Raahi",
     template: "%s | Raahi",
   },
-  description: "Full-stack TypeScript monorepo starter for web and mobile.",
+  description: "Admin portal for the Raahi student carpooling app.",
 };
 
 export default function RootLayout({

@@ -11,6 +11,7 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <Stack>
         <Stack.Screen name="index" options={{ title: "Raahi" }} />
+        <Stack.Screen name="(student)" options={{ headerShown: false }} />
         <Stack.Screen
           name="login"
           options={{ title: "Log in", presentation: "modal" }}

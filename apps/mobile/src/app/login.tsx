@@ -11,17 +11,23 @@ export default function LoginScreen() {
   async function signInWithGoogle() {
     setPending(true);
     setError(null);
-    const result = await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
-    setPending(false);
-    if (result.error) {
-      setError(result.error.message ?? "Sign in failed");
-      return;
+    try {
+      const result = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+      if (result.error) {
+        setError(result.error.message ?? "Sign in failed");
+        return;
+      }
+      const session = await authClient.getSession();
+      if (session.data) router.replace("/");
+      else setError(session.error?.message ?? "Google sign-in didn’t finish.");
+    } catch {
+      setError("Google sign-in couldn’t be completed. Please try again.");
+    } finally {
+      setPending(false);
     }
-    // On native, signIn.social doesn't navigate by itself.
-    router.back();
   }
 
   return (

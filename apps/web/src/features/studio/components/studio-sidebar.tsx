@@ -28,7 +28,7 @@ interface NavItem {
 }
 
 const NAV_ITEMS: readonly NavItem[] = [
-  { label: "Dashboard", href: "/studio", Icon: House, exact: true },
+  { label: "Student approvals", href: "/studio", Icon: House, exact: true },
 ];
 
 export function StudioSidebar({ user }: { user: Session["user"] }) {

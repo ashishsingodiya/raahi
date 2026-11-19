@@ -56,6 +56,17 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-router",
     "expo-secure-store",
     [
+      "expo-location",
+      {
+        locationWhenInUsePermission:
+          "Raahi uses your location to find nearby rides.",
+      },
+    ],
+    [
+      "react-native-maps",
+      { androidGoogleMapsApiKey: process.env.GOOGLE_MAPS_ANDROID_KEY },
+    ],
+    [
       "expo-splash-screen",
       {
         backgroundColor: "#fafafa",
@@ -74,5 +85,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   extra: {
     appVariant: APP_VARIANT,
+    androidMapsConfigured: Boolean(process.env.GOOGLE_MAPS_ANDROID_KEY),
   },
 });

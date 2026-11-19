@@ -14,7 +14,7 @@ export const env = createEnv({
   /**
    * Server-only variables. Never sent to the browser.
    */
-  server: {},
+  server: { GOOGLE_MAPS_WEB_KEY: z.string().min(1).optional() },
   /**
    * Browser-visible variables. Must start with NEXT_PUBLIC_.
    */

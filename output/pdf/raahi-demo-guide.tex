@@ -1,0 +1,177 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,top=21mm,bottom=22mm,left=21mm,right=21mm,headheight=22pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{array,tabularx,booktabs,enumitem,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+\renewcommand{\familydefault}{\sfdefault}
+\definecolor{Ink}{HTML}{182820}
+\definecolor{Pine}{HTML}{174B37}
+\definecolor{Muted}{HTML}{465C51}
+\definecolor{Wash}{HTML}{EAF3ED}
+\definecolor{Rule}{HTML}{C9DAD0}
+\color{Ink}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+\setlength{\fboxsep}{12pt}
+\setlength{\tabcolsep}{0pt}
+\renewcommand{\arraystretch}{1.24}
+\setlist[enumerate]{leftmargin=*,itemsep=5pt,topsep=3pt,label=\textbf{\arabic*.}}
+\setlist[itemize]{leftmargin=*,itemsep=3pt,topsep=2pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\bfseries\textcolor{Pine}{RAAHI}}
+\rhead{\small\textcolor{Muted}{Android demo guide}}
+\lfoot{\small\textcolor{Muted}{Student carpooling}}
+\rfoot{\small\textcolor{Pine}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{Rule}\leaders\hrule height \headrulewidth\hfill}}
+
+\hypersetup{
+  pdftitle={Raahi Android Demo Guide},
+  pdfsubject={Student carpooling and the two-phone product demonstration},
+  pdfauthor={Raahi project},
+  pdfkeywords={Raahi, Android, student carpooling, demo}
+}
+\newcommand{\kicker}[1]{{\small\bfseries\textcolor{Pine}{\MakeUppercase{#1}}}\par}
+\newcommand{\pageheading}[2]{%
+  \pdfbookmark[0]{#2}{guide-page-\thepage}%
+  \kicker{#1}%
+  {\fontsize{31}{35}\selectfont\bfseries\textcolor{Ink}{#2}\par}%
+  \vspace{2pt}%
+}
+\newcommand{\subhead}[1]{\par\addvspace{8pt}{\large\bfseries\textcolor{Pine}{#1}}\par\nopagebreak[4]}
+\newcommand{\panel}[1]{%
+  \par\noindent\colorbox{Wash}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\setlength{\parskip}{4pt}#1}}\par
+}
+\newcommand{\rtu}{\texttt{rtu.ac.in}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash\bfseries\leavevmode\color{Pine}}p{#1}}
+
+\begin{document}
+\pageheading{Project overview}{Raahi}
+{\fontsize{16}{21}\selectfont\textcolor{Pine}{Carpooling for verified students}\par}
+\medskip
+Raahi is an Android app that helps students share seats on trips they are already making. A student with a bike or car can offer a ride. Another student can find a trip going their way and ask to join for all or part of the route.
+
+\subhead{Why we built it}
+Students often pay for separate autos or cabs while other students travel the same way with spare seats. Finding someone with a compatible route and schedule is hard, especially when students do not know whom they can trust. Raahi brings ride discovery and seat requests into one verified student network.
+
+\subhead{Who uses it}
+\begin{tabularx}{\linewidth}{@{}L{31mm}@{\hspace{5mm}}Y@{}}
+\toprule
+Driver & Posts a trip, sets seat availability and price, and reviews the rider's requested pickup and drop-off. \\
+Rider & Finds a ride on the map, chooses where to get on and off, and requests a seat. \\
+Admin & Reviews personal-email profiles in Raahi Studio, a small web dashboard. \\
+\bottomrule
+\end{tabularx}
+
+A student can be a driver on one trip and a rider on another using the same account. Trips can go to campus, back home, or to local destinations such as a market or gym.
+
+\subhead{How student verification works}
+\begin{enumerate}
+  \item \textbf{Sign in with Google.} On first sign-in, Raahi prefills the name, Google email, and photo when available. The student completes their profile and adds a mobile number.
+  \item \textbf{Check eligibility.} A Google-verified email on the exact \rtu{} domain qualifies for automatic approval. A personal email goes to the Studio review queue.
+  \item \textbf{Unlock rides after approval.} Admins approve or reject personal-email accounts based on the profile shown in Studio. Pending and rejected users can open the app to check their status. The review uses the profile and requires no documents or in-person check.
+\end{enumerate}
+
+\panel{\textbf{Opening line for the demo}\\
+\textquotedblleft Raahi helps verified students find and share rides on routes they already travel.\textquotedblright}
+
+\newpage
+\pageheading{Student experience}{From search to a seat}
+
+\subhead{Offer a ride}
+The driver chooses a start and destination by searching for places or dropping map pins. They preview and select a driving route, choose a default pickup pin, set the departure date and time, and see an estimated arrival. They select bike or car, enter available seats, and can add meeting instructions. A bike ride offers one seat. The driver can make the ride free or set one fixed price in rupees per seat.
+
+\subhead{Find a ride}
+\textbf{Find rides} shows upcoming offers near the student's current location or a manually selected pickup pin. The rider can also enter a drop-off and preferred pickup time. Results show the estimated pickup time, vehicle, available seats, and price.
+
+\panel{\textbf{A partial trip can be a match}\par
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lccccccc@{}}
+Driver's route & Start & \(\rightarrow\) & Pickup & \(\rightarrow\) & Drop-off & \(\rightarrow\) & Destination \\
+Rider's trip & & & \bfseries Pickup & \(\rightarrow\) & \bfseries Drop-off & & \\
+\end{tabular}}
+
+\subhead{What makes a match}
+\begin{enumerate}
+  \item \textbf{Distance.} Both requested pins must be within the configured distance of the driver's route. The demo default is \textbf{500 m}.
+  \item \textbf{Direction.} The pickup must come before the drop-off along the route. The same endpoints in reverse order can fail the match.
+  \item \textbf{Time.} If the rider asks for a \textbf{9:00 AM} pickup, the default window is \textbf{8:30 to 9:30 AM}. Raahi compares this to the estimated time at the pickup pin, which can be later than the driver's departure.
+\end{enumerate}
+
+\subhead{Request, review, and confirm}
+The rider can use the default pickup and destination or propose custom pins along the route. The driver sees both pins and accepts or declines them together. A pending request reserves no seat. Acceptance reserves one seat for the entire ride, including for a partial trip.
+
+An accepted request shows the agreed pins, estimated pickup time, recorded price, and meeting instructions. Both students can then see each other's mobile number. Cancelling an upcoming accepted request releases the seat. If the driver cancels the ride, it disappears from search and active requests are cancelled.
+
+\textbf{Payment is direct.} The rider sees the per-seat price before requesting and pays the driver directly. Raahi does not process the payment.
+
+\newpage
+\pageheading{Behind the app}{How Raahi works}
+
+The Android app and Studio use the same backend and database. That is why a ride posted on one phone can appear on another and why an admin decision can unlock a student's ride screens.
+
+\panel{\centering
+  \textbf{Expo Android app and Next.js Studio}\\[3pt]
+  \(\downarrow\) \enspace Shared HTTPS API using tRPC\\[3pt]
+  \textbf{Next.js backend}\\[3pt]
+  \(\downarrow\) \enspace Drizzle ORM\\[3pt]
+  \textbf{PostgreSQL}}
+
+\subhead{Technology and responsibilities}
+\begin{tabularx}{\linewidth}{@{}L{46mm}@{\hspace{5mm}}Y@{}}
+\toprule
+Expo and React Native & Student onboarding, ride screens, map pins, foreground location, and booking status. \\
+Next.js and tRPC & Admin review screen and typed API for approvals, ride discovery, and booking decisions. \\
+Better Auth & Google sign-in and sessions. Raahi separately checks student approval before allowing ride actions. \\
+PostgreSQL and Drizzle & Store profiles, approval decisions, ride offers, and seat requests. \\
+Google Maps Platform & Renders the map, resolves places through Places API, and supplies driving routes and estimated durations through Compute Routes. \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Project structure.} A TypeScript monorepo keeps the apps and shared API, authentication, and database packages together. pnpm manages the workspace and Turborepo runs project tasks.
+
+\subhead{Three rules worth explaining}
+\begin{itemize}
+  \item \textbf{The backend checks the route.} It compares both pins against the selected route and estimates pickup time from travel progress. A driver's review still matters because a nearby pin can be inconvenient to reach.
+  \item \textbf{The last seat can only be accepted once.} The database locks the ride while it checks and reserves capacity. Two requests can be pending for one seat, but only one can take it.
+  \item \textbf{Phone numbers are shared with the booking partner.} The backend releases them to the two participants on an accepted, uncancelled request. Numbers stay out of search results, pending requests, and the Studio queue.
+\end{itemize}
+
+\textbf{Demo scope.} The Android app shows scheduled trips and pickup estimates. Live tracking, turn-by-turn navigation, and in-app payments are outside the MVP.
+
+\textbf{What we tested locally.} PostgreSQL tests covered student approval, route matching, competing requests for the last seat, and contact privacy. The two-phone rehearsal checks the live Android experience.
+
+\newpage
+\pageheading{Presenter runbook}{The two-phone demo}
+
+\subhead{Before presenting}
+Install the same Android test build on both phones and confirm they are connected to the same deployed backend. Use a verified \rtu{} account on Phone A, a personal Google account on Phone B, and a separate Studio admin session. Rehearse Google sign-in, map rendering, location permission, place search, and route preview on the actual phones. Keep a future departure time and two easy-to-find map points ready.
+
+\subhead{What to show and say}
+\begin{tabularx}{\linewidth}{@{}L{33mm}@{\hspace{5mm}}Y@{}}
+\toprule
+1. Sign in & On Phone A, complete onboarding to show automatic approval. On Phone B, complete onboarding and show Pending. Briefly approve Phone B in Studio, then tap \textbf{Check status} on the phone. \\
+2. Post & On Phone A, open \textbf{Offer a ride}. Select the route and default pickup, choose a future departure, and publish with one seat and a price such as 50 rupees. Explain that free rides are also supported. \\
+3. Discover & On Phone B, open \textbf{Find rides}. Use current location or choose a pickup pin near Phone A's route. Add a drop-off farther along the route and a time close to the estimated pickup. Find Phone A's offer. \\
+4. Request & Open the offer, show the price and estimated pickup, then submit one seat request with the chosen pins. Show Pending before the driver makes a decision. \\
+5. Accept & On Phone A, open \textbf{My activity}, review both pins, and accept. On Phone B, open the request to show the status change. On both phones, show the agreed pins, meeting information, and contact details. Use demo numbers if presenting to an audience. \\
+\bottomrule
+\end{tabularx}
+
+\subhead{If something stalls}
+\begin{itemize}
+  \item \textbf{No ride in search.} Check that both phones point to the same backend, the ride has a seat and a future departure, and the pins follow the driver's direction within the search window.
+  \item \textbf{Location permission denied.} Use a manual pickup pin or place search.
+  \item \textbf{Map or place search fails.} Check map rendering and the server's Places and Routes access separately. If the Demo Key lacks native Android Maps support, test the Google Maps WebView build before presenting.
+\end{itemize}
+
+\panel{\textbf{Closing line}\\
+\textquotedblleft Two students started with different accounts, found a shared route, and agreed on a seat and meeting point. Both got the information they needed to coordinate pickup.\textquotedblright}
+
+\end{document}
